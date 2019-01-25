@@ -46,7 +46,6 @@ public class Polygon extends Shape{
     public void drawOn(DrawingBoard db) {
 
         if (points.isEmpty()){
-            db.setVisible(true);
             return;
         }
 
@@ -59,25 +58,31 @@ public class Polygon extends Shape{
             if(Math.round(point.getX()) == Math.round(point.getY())){
                 for(int y = (int) Math.round(lastPoint.getY()); y != (int) Math.round(point.getY()); y += (lastPoint.getY() > point.getY() ? -1 : 1)){
 
-
+                    imgArray[y][(int) Math.round(lastPoint.getX())] = color;
 
                 }
             }else {
 
                 double slope = (point.getY() - lastPoint.getY()) / (point.getX() - lastPoint.getX());
 
-                for (int x = (int) Math.round(lastPoint.getX()); x != Math.round(point.getX()); x += (lastPoint.getX() > point.getX()) ? -1 : 1) {
+                if(Math.abs(slope) < 1) {
+                    for (int x = (int) Math.round(lastPoint.getX()); x != Math.round(point.getX()); x += (lastPoint.getX() > point.getX()) ? -1 : 1) {
 
-                    imgArray[(int) Math.round(lastPoint.getY() + (x - lastPoint.getX()) * slope)][x] = color;
+                        imgArray[(int) Math.round(lastPoint.getY() + (x - lastPoint.getX()) * slope)][x] = color;
 
+                    }
+                }else{
+                    for(int y = (int) Math.round(lastPoint.getY()); y != (int) Math.round(point.getY()); y += (lastPoint.getY() > point.getY() ? -1 : 1)){
+
+                        imgArray[y][(int) Math.round(lastPoint.getX() + ((y - lastPoint.getY()) / slope))] = color;
+
+                    }
                 }
 
             }
             lastPoint = point;
 
         }
-
-        db.setVisible(true);
 
     }
 

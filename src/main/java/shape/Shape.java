@@ -1,6 +1,7 @@
 package main.java.shape;
 
 import main.java.Drawable;
+import main.java.DrawingBoard;
 
 public abstract class Shape implements Drawable {
 
@@ -24,6 +25,13 @@ public abstract class Shape implements Drawable {
     public void changeColor(int color){
 
         this.color = color;
+
+    }
+
+    protected void set(DrawingBoard db, int y, int x){
+
+        int[][] img = db.getImageArray();
+        img[y][x] = color;
 
     }
 
