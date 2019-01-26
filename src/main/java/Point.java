@@ -20,4 +20,10 @@ public class Point {
         return y;
     }
 
+    public boolean within(DrawingBoard db){
+
+        return (x >= 0 && x < db.getWidth()) && (y >= 0 && y < db.getHeight());
+
+    }
+
 }

@@ -1,4 +1,7 @@
-package main.java;
+package main.java.drawable;
+
+import main.java.DrawingBoard;
+import main.java.drawable.Drawable;
 
 import java.util.ArrayList;
 

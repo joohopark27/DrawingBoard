@@ -1,4 +1,6 @@
-package main.java;
+package main.java.drawable;
+
+import main.java.DrawingBoard;
 
 public interface Drawable {
 

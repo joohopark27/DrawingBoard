@@ -1,6 +1,6 @@
-package main.java.shape;
+package main.java.drawable.shape;
 
-import main.java.Drawable;
+import main.java.drawable.Drawable;
 import main.java.DrawingBoard;
 
 public abstract class Shape implements Drawable {

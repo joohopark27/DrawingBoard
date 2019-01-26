@@ -1,4 +1,4 @@
-package main.java.shape;
+package main.java.drawable.shape;
 
 import main.java.DrawingBoard;
 import main.java.Point;
@@ -88,6 +88,14 @@ public class Polygon extends Shape{
 
     @Override
     public boolean within(DrawingBoard db) {
-        return false;
+
+        for (Point point: points) {
+            if(!point.within(db)){
+                return false;
+            }
+        }
+
+        return true;
+
     }
 }

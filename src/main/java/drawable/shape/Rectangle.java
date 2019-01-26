@@ -1,4 +1,4 @@
-package main.java.shape;
+package main.java.drawable.shape;
 
 import main.java.Point;
 
