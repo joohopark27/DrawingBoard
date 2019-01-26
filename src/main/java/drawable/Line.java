@@ -25,6 +25,32 @@ public class Line implements Drawable {
 
     }
 
+    public boolean intersects(Line anotherLine){
+
+        if(p1.getX() == p2.getX() && anotherLine.p1.getX() == anotherLine.p2.getX()){
+            return p1.getX() == anotherLine.p1.getX();
+        }
+
+        double thisSlope = (p1.getY() - p2.getY()) / (p1.getX() - p2.getY());
+        double thisYIntercept = p1.getY() - thisSlope * p1.getX();
+        double anotherSlope = (anotherLine.p1.getY() - anotherLine.p2.getY()) / (anotherLine.p1.getX() - anotherLine.p2.getY());
+        double anotherYIntercept = anotherLine.p1.getY() - anotherSlope * anotherLine.p1.getX();
+
+        if(thisSlope == anotherSlope){
+            if(thisYIntercept != anotherYIntercept){
+                return false;
+            }
+
+            return (Math.min(p1.getX(), p2.getX()) <= Math.max(anotherLine.p1.getX(), anotherLine.p2.getX())
+                    || Math.max(p1.getX(), p2.getX()) >= Math.min(anotherLine.p1.getX(), anotherLine.p2.getX()));
+        }
+
+        double intersectionX = (anotherYIntercept - thisYIntercept) / (thisSlope - anotherSlope);
+
+        return (Math.min(p1.getX(), p2.getX()) <= intersectionX && Math.max(p1.getX(), p2.getX()) >= intersectionX) &&
+                (Math.min(anotherLine.p1.getX(), anotherLine.p2.getX()) <= intersectionX && Math.max(anotherLine.p1.getX(), anotherLine.p2.getX()) >= intersectionX);
+    }
+
     public boolean isOnLine(int x, int y){
 
         if((p1.getX() == x && p1.getY() == y) || (p2.getX() == x && p2.getY() == y)){

@@ -51,7 +51,18 @@ public class Polygon extends Shape{
             return false;
         }
 
+        double BIG_NUMBER = 2000;
+        Line ray = new Line(p, new Point(p.getX() + BIG_NUMBER, p.getY()), color);
 
+        boolean result = false;
+
+        for(Line line: lines){
+            if(ray.intersects(line)){
+                result = !result;
+            }
+        }
+
+        return result;
 
     }
 
@@ -71,7 +82,19 @@ public class Polygon extends Shape{
            line.drawOn(db);
         }
 
+                if(isInside(new Point(500, 100))){
+                    db.getImageArray()[100][500] = color;
+                }
 
+//        for(int x = (int) Math.round(minX); x <= maxX; x++) {
+//            for (int y = (int) Math.round(minY); x <= maxY; y++) {
+//
+//                if(isInside(new Point(x, y))){
+//                    db.getImageArray()[y][x] = color;
+//                }
+//
+//            }
+//        }
 
     }
 
