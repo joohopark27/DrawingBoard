@@ -1,6 +1,6 @@
 #intelliJ
-#*.iml
-#*.xml
+*.iml
+*.xml
 
 #java
 *.class
