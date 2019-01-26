@@ -2,18 +2,23 @@ package main.java.drawable.shape;
 
 import main.java.DrawingBoard;
 import main.java.Point;
+import main.java.drawable.Line;
 
 import java.util.ArrayList;
 
 public class Polygon extends Shape{
 
     private ArrayList<Point> points;
+    private ArrayList<Line> lines;
+
+    private double maxX, maxY, minX, minY;
 
     public Polygon(){
 
         super();
 
         points = new ArrayList<>();
+        lines = new ArrayList<>();
 
     }
 
@@ -23,24 +28,32 @@ public class Polygon extends Shape{
 
     }
 
-    /**
-     * Finds the x coordinate of a point on a line given the y coordinate.
-     * @param y y coordinate of the point
-     * @param x1
-     * @param y1 (x1, y1) is one point on the line
-     * @param x2
-     * @param y2 (x2, y2) is another point on the line
-     * @return
-     */
-    public static int xOnLine(int y, int x1, int y1, int x2, int y2) {
-		if(y2 == y1)  	// horizontal line, slope == 0
-			return x1;	// actually all x values lie on the line
+    private void findMaxMin(){
 
-		double m = ((double)(x2 - x1))/(y2 - y1);	// slope
+        if(points.isEmpty()){
+            maxX = -1;
+            maxY = -1;
+            minX = -1;
+            minY = -1;
+        }
 
-		int x = (int)(x1 + m*(y - y1) + 0.5);
-		return x;
-	}
+        for (Point point: points) {
+            maxX = (point.getX() > maxX) ? point.getX() : maxX;
+            maxY = (point.getY() > maxX) ? point.getY() : maxY;
+            minX = (point.getX() < maxX) ? point.getX() : minX;
+            minY = (point.getY() < maxX) ? point.getY() : minY;
+        }
+    }
+
+    public boolean isInside(Point p){
+
+        if(p.getX() > maxX || p.getX() < minX || p.getY() > maxY || p.getY() < minY){
+            return false;
+        }
+
+
+
+    }
 
     @Override
     public void drawOn(DrawingBoard db) {
@@ -49,40 +62,16 @@ public class Polygon extends Shape{
             return;
         }
 
-        int[][] imgArray = db.getImageArray();
-
-        Point lastPoint = points.get(points.size() - 1);
-
-        for (Point point: points) {
-
-            if(Math.round(point.getX()) == Math.round(point.getY())){
-                for(int y = (int) Math.round(lastPoint.getY()); y != (int) Math.round(point.getY()); y += (lastPoint.getY() > point.getY() ? -1 : 1)){
-
-                    imgArray[y][(int) Math.round(lastPoint.getX())] = color;
-
-                }
-            }else {
-
-                double slope = (point.getY() - lastPoint.getY()) / (point.getX() - lastPoint.getX());
-
-                if(Math.abs(slope) < 1) {
-                    for (int x = (int) Math.round(lastPoint.getX()); x != Math.round(point.getX()); x += (lastPoint.getX() > point.getX()) ? -1 : 1) {
-
-                        imgArray[(int) Math.round(lastPoint.getY() + (x - lastPoint.getX()) * slope)][x] = color;
-
-                    }
-                }else{
-                    for(int y = (int) Math.round(lastPoint.getY()); y != (int) Math.round(point.getY()); y += (lastPoint.getY() > point.getY() ? -1 : 1)){
-
-                        imgArray[y][(int) Math.round(lastPoint.getX() + ((y - lastPoint.getY()) / slope))] = color;
-
-                    }
-                }
-
-            }
-            lastPoint = point;
-
+        Point p1 = points.get(points.size() - 1);
+        for(Point p2: points){
+            lines.add(new Line(p1, p2, color, 1));
+            p1 = p2;
         }
+        for(Line line: lines) {
+           line.drawOn(db);
+        }
+
+
 
     }
 
