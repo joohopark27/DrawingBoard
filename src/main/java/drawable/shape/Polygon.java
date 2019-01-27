@@ -59,6 +59,7 @@ public class Polygon extends Shape{
             if(ray.intersects(line)){
                 result = !result;
             }
+//            if(ray.)
         }
 
         return result;
@@ -74,20 +75,24 @@ public class Polygon extends Shape{
 
         Point p1 = points.get(points.size() - 1);
         for(Point p2: points){
-            lines.add(new Line(p1, p2, 0xFFFFFF, 1));
+            lines.add(new Line(p1, p2, color, 1));
             p1 = p2;
         }
 
         findMaxMin();
-        for(int x = (int) Math.round(minX); x <= maxX; x++) {
-            for (int y = (int) Math.round(minY); y <= maxY; y++) {
 
-                if(isInside(new Point(x, y))){
-                    db.getImageArray()[y][x] = color;
+        if (isFilled) {
+            for (int x = (int) Math.round(minX); x <= maxX; x++) {
+                for (int y = (int) Math.round(minY); y <= maxY; y++) {
+
+                    if (isInside(new Point(x, y))) {
+                        db.getImageArray()[y][x] = color;
+                    }
+
                 }
-
             }
         }
+
         for(Line line: lines) {
             line.drawOn(db);
         }

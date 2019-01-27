@@ -6,19 +6,19 @@ import main.java.DrawingBoard;
 public abstract class Shape implements Drawable {
 
     protected int color;
-    protected int weight;
+    protected boolean isFilled;
 
     protected Shape(){
 
         color = 0xFF0000;
-        weight = 3;
+        isFilled = false;
 
     }
 
-    protected Shape(int color, int weight){
+    protected Shape(int color, boolean isFilled){
 
         this.color = color;
-        this.weight = weight;
+        this.isFilled = isFilled;
 
     }
 
@@ -28,11 +28,8 @@ public abstract class Shape implements Drawable {
 
     }
 
-    protected void set(DrawingBoard db, int y, int x){
-
-        int[][] img = db.getImageArray();
-        img[y][x] = color;
-
+    public void fill(boolean fill){
+        isFilled = fill;
     }
 
 }
