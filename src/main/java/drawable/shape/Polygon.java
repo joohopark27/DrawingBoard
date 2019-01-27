@@ -13,6 +13,8 @@ public class Polygon extends Shape{
 
     private double maxX, maxY, minX, minY;
 
+    private float BIG_NUM = 1000000;
+
     public Polygon(){
 
         super();
@@ -30,18 +32,16 @@ public class Polygon extends Shape{
 
     private void findMaxMin(){
 
-        if(points.isEmpty()){
-            maxX = -1;
-            maxY = -1;
-            minX = -1;
-            minY = -1;
-        }
+        maxX = -1;
+        maxY = -1;
+        minX = BIG_NUM;
+        minY = BIG_NUM;
 
         for (Point point: points) {
-            maxX = (point.getX() > maxX) ? point.getX() : maxX;
-            maxY = (point.getY() > maxX) ? point.getY() : maxY;
-            minX = (point.getX() < maxX) ? point.getX() : minX;
-            minY = (point.getY() < maxX) ? point.getY() : minY;
+            maxX = Math.max(point.getX(), maxX);
+            maxY = Math.max(point.getY(), maxY);
+            minX = Math.min(point.getX(), minX);
+            minY = Math.min(point.getY(), minY);
         }
     }
 
@@ -51,8 +51,7 @@ public class Polygon extends Shape{
             return false;
         }
 
-        double BIG_NUMBER = 2000;
-        Line ray = new Line(p, new Point(p.getX() + BIG_NUMBER, p.getY()), color);
+        Line ray = new Line(p, new Point(BIG_NUM, p.getY()), color);
 
         boolean result = false;
 
@@ -75,26 +74,23 @@ public class Polygon extends Shape{
 
         Point p1 = points.get(points.size() - 1);
         for(Point p2: points){
-            lines.add(new Line(p1, p2, color, 1));
+            lines.add(new Line(p1, p2, 0xFFFFFF, 1));
             p1 = p2;
         }
-        for(Line line: lines) {
-           line.drawOn(db);
-        }
 
-                if(isInside(new Point(500, 100))){
-                    db.getImageArray()[100][500] = color;
+        findMaxMin();
+        for(int x = (int) Math.round(minX); x <= maxX; x++) {
+            for (int y = (int) Math.round(minY); y <= maxY; y++) {
+
+                if(isInside(new Point(x, y))){
+                    db.getImageArray()[y][x] = color;
                 }
 
-//        for(int x = (int) Math.round(minX); x <= maxX; x++) {
-//            for (int y = (int) Math.round(minY); x <= maxY; y++) {
-//
-//                if(isInside(new Point(x, y))){
-//                    db.getImageArray()[y][x] = color;
-//                }
-//
-//            }
-//        }
+            }
+        }
+        for(Line line: lines) {
+            line.drawOn(db);
+        }
 
     }
 

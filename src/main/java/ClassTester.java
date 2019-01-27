@@ -13,14 +13,14 @@ public class ClassTester {
 
         Drawing drawing = new Drawing(filePath);
 
-//        Polygon polygon = new Polygon();
-//        polygon.changeColor(0x00FF00);
-//        polygon.add(new Point(300, 100));
-//        polygon.add(new Point(60, 120));
-//        polygon.add(new Point(20, 10));
-//        polygon.add(new Point(210, 200));
-//        polygon.add(new Point(400, 140));
-//        drawing.add(polygon);
+        Polygon polygon = new Polygon();
+        polygon.changeColor(0x00FF00);
+        polygon.add(new Point(300, 100));
+        polygon.add(new Point(60, 120));
+        polygon.add(new Point(20, 10));
+        polygon.add(new Point(210, 200));
+        polygon.add(new Point(400, 140));
+        drawing.add(polygon);
 
 //        Shape rect = new Rectangle(new Point(100, 80), new Point(310, 210));
 //        drawing.add(rect);

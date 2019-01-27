@@ -27,28 +27,64 @@ public class Line implements Drawable {
 
     public boolean intersects(Line anotherLine){
 
-        if(p1.getX() == p2.getX() && anotherLine.p1.getX() == anotherLine.p2.getX()){
-            return p1.getX() == anotherLine.p1.getX();
+        if(isVertical() || anotherLine.isVertical()){
+
+            if(isVertical() && anotherLine.isVertical()) {
+                return p1.getX() == anotherLine.p1.getX();
+            }else if(anotherLine.isVertical()){
+
+                double a1 = (p1.getY() - p2.getY()) / (p1.getX() - p2.getX());
+                double b1 = p1.getY() - a1 * p1.getX();
+
+                return isInRangeX(anotherLine.p1.getX()) && anotherLine.isInRangeY(a1 * anotherLine.p1.getX() + b1);
+
+            }else{
+
+                double a2 = (anotherLine.p1.getY() - anotherLine.p2.getY()) / (anotherLine.p1.getX() - anotherLine.p2.getX());
+                double b2 = anotherLine.p1.getY() - a2 * anotherLine.p1.getX();
+
+                return anotherLine.isInRangeY(p1.getX()) && isInRangeY(a2 * p1.getX() + b2);
+
+            }
+
         }
 
-        double thisSlope = (p1.getY() - p2.getY()) / (p1.getX() - p2.getY());
-        double thisYIntercept = p1.getY() - thisSlope * p1.getX();
-        double anotherSlope = (anotherLine.p1.getY() - anotherLine.p2.getY()) / (anotherLine.p1.getX() - anotherLine.p2.getY());
-        double anotherYIntercept = anotherLine.p1.getY() - anotherSlope * anotherLine.p1.getX();
+        double a1 = (p1.getY() - p2.getY()) / (p1.getX() - p2.getX());
+        double b1 = p1.getY() - a1 * p1.getX();
+        double a2 = (anotherLine.p1.getY() - anotherLine.p2.getY()) / (anotherLine.p1.getX() - anotherLine.p2.getX());
+        double b2 = anotherLine.p1.getY() - a2 * anotherLine.p1.getX();
 
-        if(thisSlope == anotherSlope){
-            if(thisYIntercept != anotherYIntercept){
+        if(a1 == a2){
+            if(b1 != b2){
                 return false;
             }
 
-            return (Math.min(p1.getX(), p2.getX()) <= Math.max(anotherLine.p1.getX(), anotherLine.p2.getX())
-                    || Math.max(p1.getX(), p2.getX()) >= Math.min(anotherLine.p1.getX(), anotherLine.p2.getX()));
+            return isInRangeX(anotherLine.p1.getX()) || isInRangeX(anotherLine.p2.getX());
         }
 
-        double intersectionX = (anotherYIntercept - thisYIntercept) / (thisSlope - anotherSlope);
+        double intersectionX = (b2 - b1) / (a1 - a2);
 
-        return (Math.min(p1.getX(), p2.getX()) <= intersectionX && Math.max(p1.getX(), p2.getX()) >= intersectionX) &&
-                (Math.min(anotherLine.p1.getX(), anotherLine.p2.getX()) <= intersectionX && Math.max(anotherLine.p1.getX(), anotherLine.p2.getX()) >= intersectionX);
+        return isInRangeX(intersectionX) && anotherLine.isInRangeX(intersectionX);
+
+    }
+
+    /**
+     * checks if the x coordinate is inside the range
+     */
+    private boolean isInRangeX(double x){
+        return (Math.min(p1.getX(), p2.getX()) <= x && Math.max(p1.getX(), p2.getX()) >= x);
+    }
+
+    /**
+     * checks if the y coordinate is inside the range
+     */
+    private boolean isInRangeY(double y){
+        return (Math.min(p1.getY(), p2.getY()) <= y && Math.max(p1.getY(), p2.getY()) >= y);
+    }
+
+
+    public boolean isVertical(){
+        return p1.getX() == p2.getX();
     }
 
     public boolean isOnLine(int x, int y){
