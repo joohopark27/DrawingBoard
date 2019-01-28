@@ -15,17 +15,17 @@ public class MessingWithRegularPolygons {
 
         Drawing d = new Drawing(filePath);
 
-        Polygon tri = new RegularPolygon(new Point(50, 50), 3, 40 * Math.cos(Math.PI * (1 - 1 / 3)) * 2);
-        Polygon squ = new RegularPolygon(new Point(150, 50), 4, 40 * Math.cos(Math.PI * (1 - 1 / 4)) * 2);
+        Polygon tri = new RegularPolygon(new Point(50, 50), 3, 40 * Math.cos(Math.PI * (1 - 1.0 / 3)) * 2);
+        Polygon squ = new RegularPolygon(new Point(150, 50), 4, 40 * Math.cos(Math.PI * (1 - 1.0 / 4)) * 2);
         squ.rotate(45);
-        Polygon pent = new RegularPolygon(new Point(250, 50), 5, 40 * Math.cos(Math.PI * (1 - 1 / 5)) * 2);
+        Polygon pent = new RegularPolygon(new Point(250, 50), 5, 40 * Math.cos(Math.PI * (1 - 1.0 / 5)) * 2);
         pent.rotate(90);
-        Polygon hex = new RegularPolygon(new Point(350, 50), 6, 40 * Math.cos(Math.PI * (1 - 1 / 6)) * 2);
+        Polygon hex = new RegularPolygon(new Point(350, 50), 6, 40 * Math.cos(Math.PI * (1 - 1.0 / 6)) * 2);
         hex.rotate(30);
-        Polygon sevenSide = new RegularPolygon(new Point(450, 50), 7, 40 * Math.cos(Math.PI * (1 - 1 / 7)) * 2);
+        Polygon sevenSide = new RegularPolygon(new Point(450, 50), 7, 40 * Math.cos(Math.PI * (1 - 1.0 / 7)) * 2);
         sevenSide.rotate(777);
-        Polygon oct = new RegularPolygon(new Point(550, 50), 8, 40 * Math.cos(Math.PI * (1 - 1 / 8)) * 2);
-        Polygon nonagon = new RegularPolygon(new Point(650, 50), 9, 40 * Math.cos(Math.PI * (1 - 1 / 9)) * 2);
+        Polygon oct = new RegularPolygon(new Point(550, 50), 8, 40 * Math.cos(Math.PI * (1 - 1.0 / 8)) * 2);
+        Polygon nonagon = new RegularPolygon(new Point(650, 50), 9, 40 * Math.cos(Math.PI * (1 - 1.0 / 9)) * 2);
 
         d.add(tri);
         d.add(squ);

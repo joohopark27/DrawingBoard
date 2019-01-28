@@ -8,7 +8,7 @@ public class RegularPolygon extends Polygon{
 
         super();
 
-        double distFromCenter = l / 2 / Math.cos((1 - 1 / n) * Math.PI);
+        double distFromCenter = l / 2 / Math.cos((1 - 1.0 / n) * Math.PI);
 
         for(int i = 0; i < n; i++){
 
