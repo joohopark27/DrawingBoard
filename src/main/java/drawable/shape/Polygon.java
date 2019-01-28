@@ -22,27 +22,36 @@ public class Polygon extends Shape{
         points = new ArrayList<>();
         lines = new ArrayList<>();
 
+        maxX = -1;
+        maxY = -1;
+        minX = BIG_NUM;
+        minY = BIG_NUM;
+
     }
 
     public void add(Point point){
 
         points.add(point);
 
+        maxX = Math.max(point.getX(), maxX);
+        maxY = Math.max(point.getY(), maxY);
+        minX = Math.min(point.getX(), minX);
+        minY = Math.min(point.getY(), minY);
+
     }
 
-    private void findMaxMin(){
+    public void rotate(double angle){
 
-        maxX = -1;
-        maxY = -1;
-        minX = BIG_NUM;
-        minY = BIG_NUM;
+        Point center = new Point((maxX + minX) / 2, (minY + maxY) / 2);
 
-        for (Point point: points) {
-            maxX = Math.max(point.getX(), maxX);
-            maxY = Math.max(point.getY(), maxY);
-            minX = Math.min(point.getX(), minX);
-            minY = Math.min(point.getY(), minY);
+        for (Point p: points){
+
+            p.rotate(center, angle);
+
         }
+
+        findMaxMin();
+
     }
 
     public boolean isInside(Point p){
@@ -59,11 +68,25 @@ public class Polygon extends Shape{
             if(ray.intersects(line)){
                 result = !result;
             }
-//            if(ray.)
         }
 
         return result;
 
+    }
+
+    private void findMaxMin(){
+
+        maxX = -BIG_NUM;
+        maxY = -BIG_NUM;
+        minX = BIG_NUM;
+        minY = BIG_NUM;
+
+        for (Point point: points) {
+            maxX = Math.max(point.getX(), maxX);
+            maxY = Math.max(point.getY(), maxY);
+            minX = Math.min(point.getX(), minX);
+            minY = Math.min(point.getY(), minY);
+        }
     }
 
     @Override
@@ -78,8 +101,6 @@ public class Polygon extends Shape{
             lines.add(new Line(p1, p2, color, 1));
             p1 = p2;
         }
-
-        findMaxMin();
 
         if (isFilled) {
             for (int x = (int) Math.round(minX); x <= maxX; x++) {
