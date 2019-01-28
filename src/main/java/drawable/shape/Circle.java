@@ -19,9 +19,15 @@ public class Circle extends Shape {
         for(int y = (int) Math.round(center.getY() - r); y <= Math.round(center.getY() + r); y++){
             for(int x = (int) Math.round(center.getX() - r); x <= Math.round(center.getX() + r); x++){
 
-                if((center.getX() - x) * (center.getX() - x) + (center.getY() - y) * (center.getY() - y) <= r * r){
+                double distance = center.distance(new Point(x, y));
 
-                    db.getImageArray()[y][x] = color;
+                if(distance <= r + (strokeSize + 1) / 2 && distance >= r + strokeSize / 2){
+
+                    db.getImageArray()[y][x] = strokeColor.getVal();
+
+                }else if(isFilled && distance < r + strokeSize / 2){
+
+                    db.getImageArray()[y][x] = color.getVal();
 
                 }
 

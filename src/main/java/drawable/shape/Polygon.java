@@ -98,7 +98,7 @@ public class Polygon extends Shape{
 
         Point p1 = points.get(points.size() - 1);
         for(Point p2: points){
-            lines.add(new Line(p1, p2, color, 1));
+            lines.add(new Line(p1, p2, strokeColor, strokeSize));
             p1 = p2;
         }
 
@@ -107,7 +107,7 @@ public class Polygon extends Shape{
                 for (int y = (int) Math.round(minY); y <= maxY; y++) {
 
                     if (isInside(new Point(x, y))) {
-                        db.getImageArray()[y][x] = color;
+                        db.getImageArray()[y][x] = color.getVal();
                     }
 
                 }
