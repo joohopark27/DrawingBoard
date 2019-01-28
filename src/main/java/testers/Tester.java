@@ -9,9 +9,11 @@ public class Tester {
 
     public static void main(String[] args) throws IOException {
 
-        Drawing drawing = new Drawing(filePath);
+//        Drawing drawing = new Drawing(filePath);
 
-        drawing.setVisable();
+        //add tester code here
+
+//        drawing.setVisable();
 
     }
 }
