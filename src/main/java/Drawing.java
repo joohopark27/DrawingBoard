@@ -1,3 +1,4 @@
+//Reviewed by Hashim Asad, 1/29/19
 package main.java;
 
 import main.java.drawable.Drawable;
@@ -32,7 +33,7 @@ public class Drawing {
         mainLayer.add(drawable);
     }
 
-    public void setVisable(){
+    public void show(){
 
         mainLayer.drawOn(db);
         db.setVisible(true);

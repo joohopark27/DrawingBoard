@@ -1,5 +1,6 @@
 package main.java.testers;
 
+import main.java.Colors;
 import main.java.Drawing;
 
 import java.io.IOException;
@@ -9,11 +10,11 @@ public class Tester {
 
     public static void main(String[] args) throws IOException {
 
-//        Drawing drawing = new Drawing(filePath);
+        Drawing drawing = new Drawing(filePath);
 
         //add tester code here
 
-//        drawing.setVisable();
+        drawing.show();
 
     }
 }

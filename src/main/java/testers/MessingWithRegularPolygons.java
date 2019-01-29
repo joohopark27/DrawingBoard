@@ -39,7 +39,7 @@ public class MessingWithRegularPolygons {
         d.add(nonagon);
         d.add(nGon);
 
-        d.setVisable();
+        d.show();
 
     }
 }

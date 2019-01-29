@@ -13,7 +13,8 @@ public class Polygon extends Shape{
 
     private double maxX, maxY, minX, minY;
 
-    private float BIG_NUM = 1000000;
+    private final static float BIG_NUM = 1000000;
+    final static double SMALL_NUMBER = 1e-5;
 
     public Polygon(){
 
@@ -31,6 +32,7 @@ public class Polygon extends Shape{
 
     public void add(Point point){
 
+        point.move(0, SMALL_NUMBER);
         points.add(point);
 
         maxX = Math.max(point.getX(), maxX);

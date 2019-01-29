@@ -5,12 +5,11 @@ public class Point {
     private double x;
     private double y;
 
-    final static double SMALL_NUMBER = 1e-5;
 
     public Point(double x, double y){
 
         this.x = x;
-        this.y = y + SMALL_NUMBER;
+        this.y = y;
 
     }
 

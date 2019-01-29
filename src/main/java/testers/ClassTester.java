@@ -34,14 +34,14 @@ public class ClassTester {
         square.fill(true);
         drawing.add(square);
 
-        Shape circle = new Circle(new Point(400, 150), 75);
+        Shape circle = new Circle(new Point(500, 150), 75);
         circle.changeColor(Colors.GREEN);
         circle.fill(true);
-        drawing.add(circle);
+//        drawing.add(circle);
 
-        drawing.add(new Line(new Point(900, 40), new Point(800, 200), Colors.RED, 5));
+        drawing.add(new Line(new Point(900, 40), new Point(800, 200), Colors.YELLOW, 5));
 
-        drawing.setVisable();
+        drawing.show();
 
     }
 
