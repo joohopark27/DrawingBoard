@@ -23,11 +23,11 @@ public class Circle extends Shape {
 
                 if(distance <= r + (strokeSize + 1) / 2 && distance >= r + strokeSize / 2){
 
-                    db.getImageArray()[y][x] = strokeColor.getVal();
+                    db.getImageArray()[y][x] = strokeColor;
 
                 }else if(isFilled && distance < r + strokeSize / 2){
 
-                    db.getImageArray()[y][x] = color.getVal();
+                    db.getImageArray()[y][x] = color;
 
                 }
 
