@@ -4,6 +4,8 @@ import main.java.Colors;
 import main.java.Drawing;
 import main.java.DrawingBoard;
 import main.java.Point;
+import main.java.drawable.Line;
+import main.java.drawable.ShapeGroup;
 import main.java.drawable.shape.Polygon;
 
 import java.io.IOException;
@@ -26,7 +28,15 @@ public class Tester {
 
         }
 
-        drawing.add(polygon);
+        ShapeGroup lines = new ShapeGroup();
+
+        for(int x = 400, y = 0; x >= 0; x -= 2, y ++){
+            Line line = new Line(new Point(x, 0), new Point(0, y), Colors.YELLOW);
+            lines.add(line);
+        }
+
+//        drawing.add(polygon);
+        drawing.add(lines);
 
         drawing.show();
 

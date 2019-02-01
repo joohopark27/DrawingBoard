@@ -1,7 +1,9 @@
 package main.java.testers;
 
+import main.java.Colors;
 import main.java.Drawing;
 import main.java.Point;
+import main.java.drawable.ShapeGroup;
 import main.java.drawable.shape.Polygon;
 import main.java.drawable.shape.RegularPolygon;
 
@@ -27,8 +29,10 @@ public class MessingWithRegularPolygons {
         Polygon oct = new RegularPolygon(new Point(550, 50), 8, 40 * Math.cos(Math.PI * (1 - 1.0 / 8)) * 2);
         Polygon nonagon = new RegularPolygon(new Point(650, 50), 9, 40 * Math.cos(Math.PI * (1 - 1.0 / 9)) * 2);
 
-        int n = 12;
-        Polygon nGon = new RegularPolygon(new Point(800, 100), n, 95 * Math.cos(Math.PI * (1 - 1.0 / n)) * 2);
+        ShapeGroup nGon = new ShapeGroup();
+        for(int n = 10; n >= 3; n--) {
+            nGon.add(new RegularPolygon(new Point(800, 100), n, 95 * Math.cos(Math.PI * (1 - 1.0 / n)) * 2));
+        }
 
         d.add(tri);
         d.add(squ);

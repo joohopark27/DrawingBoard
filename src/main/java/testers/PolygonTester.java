@@ -8,7 +8,7 @@ import main.java.drawable.shape.*;
 
 import java.io.IOException;
 
-public class ClassTester {
+public class PolygonTester {
 
     private static String filePath = "res/couplands.net's header.jpg";
 
@@ -34,10 +34,10 @@ public class ClassTester {
         square.fill(true);
         drawing.add(square);
 
-        Shape circle = new Circle(new Point(500, 150), 75);
+        Shape circle = new Circle(new Point(550, 150), 75);
         circle.changeColor(Colors.GREEN);
         circle.fill(true);
-//        drawing.add(circle);
+        drawing.add(circle);
 
         drawing.add(new Line(new Point(900, 40), new Point(800, 200), Colors.YELLOW, 5));
 
