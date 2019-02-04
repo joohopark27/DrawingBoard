@@ -50,6 +50,12 @@ public abstract class Shape implements Drawable {
 
     }
 
+    public void setStrokeSize(int size){
+
+        strokeSize = size;
+
+    }
+
     public void fill(boolean fill){
         isFilled = fill;
     }
