@@ -1,15 +1,13 @@
-package main.java.drawable;
+package main.java.drawable.stroke;
 
 import main.java.Colors;
 import main.java.DrawingBoard;
 import main.java.Point;
+import main.java.drawable.Drawable;
 
-public class Line implements Drawable {
+public class Line extends Stroke implements Drawable {
 
     private Point p1, p2;
-
-    private int stroke;
-    private int color;
 
     public Line(Point p1, Point p2, Colors color){
 
@@ -31,10 +29,9 @@ public class Line implements Drawable {
 
     public Line(Point p1, Point p2, int color, int stroke){
 
+        super(stroke, color);
         this.p1 = p1;
         this.p2 = p2;
-        this.stroke = stroke;
-        this.color = color;
 
     }
 
@@ -134,9 +131,8 @@ public class Line implements Drawable {
         if(Math.round(p1.getX()) == Math.round(p2.getX())){
             for(int y = (int) Math.round(p2.getY()); y != (int) Math.round(p1.getY()); y += (p2.getY() > p1.getY() ? -1 : 1)){
 
-                for(int i = 0; i < stroke; i++) {
-                    db.getImageArray()[y][(int) Math.round(p2.getX() + i - stroke / 2)] = color;
-                }
+                drawAtPoint(db, p2.getX(), y);
+
             }
         }else {
 
@@ -145,17 +141,14 @@ public class Line implements Drawable {
             if(Math.abs(slope) < 1) {
                 for (int x = (int) Math.round(p2.getX()); x != Math.round(p1.getX()); x += (p2.getX() > p1.getX()) ? -1 : 1) {
 
-                    for(int i = 0; i < stroke; i++) {
-                        db.getImageArray()[(int) Math.round(p2.getY() + (x - p2.getX()) * slope + i - stroke / 2)][x] = color;
-                    }
+                    drawAtPoint(db, x, p2.getY() + (x - p2.getX()) * slope);
 
                 }
             }else{
                 for(int y = (int) Math.round(p2.getY()); y != (int) Math.round(p1.getY()); y += (p2.getY() > p1.getY() ? -1 : 1)){
 
-                    for(int i = 0; i < stroke; i++) {
-                        db.getImageArray()[y][(int) Math.round(p2.getX() + ((y - p2.getY()) / slope) + i - stroke / 2)] = color;
-                    }
+                    drawAtPoint(db, p2.getX() + ((y - p2.getY()) / slope), y);
+
                 }
             }
 

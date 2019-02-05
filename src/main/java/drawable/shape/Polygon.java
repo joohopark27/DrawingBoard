@@ -2,7 +2,7 @@ package main.java.drawable.shape;
 
 import main.java.DrawingBoard;
 import main.java.Point;
-import main.java.drawable.Line;
+import main.java.drawable.stroke.Line;
 
 import java.util.ArrayList;
 
