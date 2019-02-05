@@ -30,8 +30,8 @@ public class MessingWithRegularPolygons {
         Polygon nonagon = new RegularPolygon(new Point(650, 50), 9, 40 * Math.cos(Math.PI * (1 - 1.0 / 9)) * 2);
 
         ShapeGroup nGon = new ShapeGroup();
-        for(int n = 10; n >= 3; n--) {
-            nGon.add(new RegularPolygon(new Point(800, 100), n, 95 * Math.cos(Math.PI * (1 - 1.0 / n)) * 2));
+        for(int n = 360; n >= 10; n--) {
+//            nGon.add(new RegularPolygon(new Point(800, 100), n, 95 * Math.cos(Math.PI * (1 - 1.0 / n)) * 2));
         }
 
         d.add(tri);

@@ -2,9 +2,8 @@ package main.java.testers;
 
 import main.java.Colors;
 import main.java.Drawing;
-import main.java.DrawingBoard;
 import main.java.Point;
-import main.java.drawable.Line;
+import main.java.drawable.stroke.Line;
 import main.java.drawable.ShapeGroup;
 import main.java.drawable.shape.Polygon;
 
@@ -20,9 +19,10 @@ public class Tester {
         //add tester code here
         Polygon polygon = new Polygon();
         polygon.fill(true);
-        polygon.changeColor(Colors.YELLOW);
+        polygon.changeColor(Colors.GREEN);
+        polygon.changeStrokeColor(Colors.WHITE);
 
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 90; i++){
 
             polygon.add(new Point(Math.random() * 800 + 10, Math.random() * 200 + 10));
 
@@ -35,8 +35,8 @@ public class Tester {
             lines.add(line);
         }
 
-//        drawing.add(polygon);
         drawing.add(lines);
+        drawing.add(polygon);
 
         drawing.show();
 

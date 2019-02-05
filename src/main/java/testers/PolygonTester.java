@@ -3,7 +3,7 @@ package main.java.testers;
 import main.java.Colors;
 import main.java.Drawing;
 import main.java.Point;
-import main.java.drawable.Line;
+import main.java.drawable.stroke.Line;
 import main.java.drawable.shape.*;
 
 import java.io.IOException;
@@ -26,8 +26,9 @@ public class PolygonTester {
         polygon.fill(true);
         drawing.add(polygon);
 
-        Shape rect = new Rectangle(new Point(650, 80), new Point(860, 210));
+        Polygon rect = new Rectangle(new Point(650, 50), new Point(860, 110));
         rect.fill(true);
+        rect.rotate(20);
         drawing.add(rect);
 
         Shape square = new Square(new Point(500, 100), 100);
