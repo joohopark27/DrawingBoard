@@ -9,6 +9,7 @@ public abstract class Shape implements Drawable {
     protected int color;
     protected int strokeColor;
     protected boolean isFilled;
+    boolean inverted;
     protected int strokeSize;
 
     protected Shape(){
@@ -23,6 +24,7 @@ public abstract class Shape implements Drawable {
         this.isFilled = isFilled;
         this.strokeColor = Colors.BLACK.getVal();
         this.strokeSize = 1;
+        inverted = false;
 
     }
 
@@ -58,6 +60,12 @@ public abstract class Shape implements Drawable {
 
     public void fill(boolean fill){
         isFilled = fill;
+    }
+
+    public void setInverted(boolean inverted){
+
+        this.inverted = inverted;
+
     }
 
 }

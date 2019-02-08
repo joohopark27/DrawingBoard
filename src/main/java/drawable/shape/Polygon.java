@@ -109,7 +109,7 @@ public class Polygon extends Shape{
                 for (int y = (int) Math.round(minY); y <= maxY; y++) {
 
                     if (isInside(new Point(x, y))) {
-                        db.getImageArray()[y][x] = color;
+                        db.getImageArray()[y][x] = (inverted) ? 0xFFFFFF - db.getImageArray()[y][x] : color;
                     }
 
                 }
@@ -134,4 +134,5 @@ public class Polygon extends Shape{
         return true;
 
     }
+
 }

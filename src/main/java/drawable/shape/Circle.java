@@ -27,7 +27,7 @@ public class Circle extends Shape {
 
                 }else if(isFilled && distance < r + strokeSize / 2){
 
-                    db.getImageArray()[y][x] = color;
+                    db.getImageArray()[y][x] = (inverted) ? 0xFFFFFF - db.getImageArray()[y][x] : color;
 
                 }
 
