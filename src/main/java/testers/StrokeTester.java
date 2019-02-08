@@ -20,9 +20,9 @@ public class StrokeTester {
         //add tester code here
 
         ShapeGroup curves = new ShapeGroup();
-        for(int i = 0; i < 99; i ++){
+        for(int i = 0; i < 999; i ++){
 
-            Stroke curve = new BezierCurve(new Point( 10, 100), new Point(Math.random() * 600 + 10, Math.random() * 180 + 10), new Point(800 - Math.random() * 600, Math.random() * 180 + 10), new Point(800, Math.random() * 180 + 10));
+            Stroke curve = new BezierCurve(new Point( 100, 100), new Point(Math.random() * 600 + 10, Math.random() * 180 + 10), new Point(800 - Math.random() * 600, Math.random() * 180 + 10), new Point(800 - Math.random() * 300, Math.random() * 180 + 10));
             curve.setColor((int)Math.round(Math.random() * 0xFFFFFF));
             curves.add(curve);
 
