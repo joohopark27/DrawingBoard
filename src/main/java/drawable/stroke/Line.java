@@ -35,6 +35,19 @@ public class Line extends Stroke implements Drawable {
 
     }
 
+    public void rotate(double angle){
+
+        rotate(new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2), angle);
+
+    }
+
+    public void rotate(Point p, double angle){
+
+        p1.rotate(p, angle);
+        p2.rotate(p, angle);
+
+    }
+
     public boolean intersects(Line anotherLine){
 
         if(isVertical() || anotherLine.isVertical()){
@@ -78,7 +91,7 @@ public class Line extends Stroke implements Drawable {
 
     }
 
-    private double getSlope(){
+    public double getSlope(){
 
         if(isVertical()){
             return Double.NaN;
@@ -88,9 +101,45 @@ public class Line extends Stroke implements Drawable {
 
     }
 
-    private double getYIntercept(){
+    public double getYIntercept(){
 
         return p1.getY() - getSlope() * p1.getX();
+
+    }
+
+    public double getLength(){
+
+        return p1.distance(p2);
+
+    }
+
+    public double getX1(){
+
+        return p1.getX();
+
+    }
+
+    public double getY1(){
+
+        return p1.getY();
+
+    }
+
+    public double getX2(){
+
+        return p2.getX();
+
+    }
+
+    public double getY2(){
+
+        return p2.getY();
+
+    }
+
+    public int getColor(){
+
+        return color;
 
     }
 

@@ -36,8 +36,9 @@ public abstract class Stroke implements Drawable {
 
     protected void drawAtPoint(DrawingBoard db, double x0, double y0){
 
-
-        db.getImageArray()[(int)y0][(int)x0] = color;
+        if((int)y0 < db.getImageArray().length && (int)y0 > 0 && (int)x0 < db.getImageArray()[(int)y0].length && (int)x0 > 0) {
+            db.getImageArray()[(int) y0][(int) x0] = color;
+        }
 
         for(int y = (int) Math.round(y0 - (stroke + 1 / 2)); y <= Math.round(y0 + stroke / 2); y++){
             for(int x = (int) Math.round(x0 - (stroke + 1 / 2)); x <= Math.round(x0 + stroke / 2); x++){
