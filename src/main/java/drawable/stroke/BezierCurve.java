@@ -3,17 +3,72 @@ package main.java.drawable.stroke;
 import main.java.DrawingBoard;
 import main.java.Point;
 
+import java.util.ArrayList;
+
 public class BezierCurve extends Stroke {
 
-    private Point p0, p1, p2, p3;
+    private Point[] points;
     private final static double SMALL_NUM = 1e-5;
+
+    public BezierCurve(Point p0, Point p1, ArrayList<Point> points){
+
+        this.points = new Point[2 + points.size()];
+
+        this.points[0] = p0;
+        this.points[this.points.length - 1] = p1;
+
+        for(int i = 1; i <= points.size(); i++){
+
+            this.points[i] = points.get(i - 1);
+
+        }
+
+    }
 
     public BezierCurve(Point p0, Point p1, Point p2, Point p3){
 
-        this.p0 = p0;
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
+        points = new Point[4];
+
+        points[0] = p0;
+        points[1] = p1;
+        points[2] = p2;
+        points[3] = p3;
+
+    }
+
+    public int bionomialCoefficient(int n, int k){
+
+        int c = 1;
+
+        for(int i = k + 1; i <= n; i++){
+
+            c *= i;
+
+        }
+
+        for(int i = 1; i <= n - k; i++){
+
+            c /= i;
+
+        }
+
+        return c;
+
+    }
+
+    public Point getPoint(double t){
+
+        Point point = new Point(0, 0);
+
+        for(int i = 0; i < points.length; i++){
+
+            double mutiplier = bionomialCoefficient(points.length - 1, i) * Math.pow(1 - t, points.length - 1 - i) * Math.pow(t, i);
+
+            point.move(mutiplier * points[i].getX(), mutiplier * points[i].getY());
+
+        }
+
+        return point;
 
     }
 
@@ -22,28 +77,26 @@ public class BezierCurve extends Stroke {
 
         for(double i = 0; i <= 1; i += SMALL_NUM){
 
-            Point q1 = findPointBetween(p0, p1, i);
-            Point q2 = findPointBetween(p1, p2, i);
-            Point q3 = findPointBetween(p2, p3, i);
+            Point p = getPoint(i);
 
-            Point r1 = findPointBetween(q1, q2, i);
-            Point r2 = findPointBetween(q2, q3, i);
-
-            Point point = findPointBetween(r1, r2, i);
-            drawAtPoint(db, point.getX(), point.getY());
+            drawAtPoint(db, p);
 
         }
 
     }
 
-    private Point findPointBetween(Point p1, Point p2, double percentage){
-
-        return new Point((p2.getX() - p1.getX()) * percentage + p1.getX(), (p2.getY() - p1.getY()) * percentage + p1.getY());
-
-    }
-
     @Override
     public boolean within(DrawingBoard db) {
-        return p0.within(db) && p1.within(db) && p2.within(db) && p3.within(db);
+
+        for(Point p: points){
+
+            if(!p.within(db)){
+                return false;
+            }
+
+        }
+
+        return true;
+
     }
 }

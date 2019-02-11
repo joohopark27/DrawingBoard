@@ -17,6 +17,7 @@ public class Drawing {
     public Drawing(int width, int height){
 
         mainLayer = new ShapeGroup();
+        System.out.println(width + ", " + height);
         db = new DrawingBoard(width, height);
 
     }

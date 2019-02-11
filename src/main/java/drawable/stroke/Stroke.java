@@ -2,6 +2,7 @@ package main.java.drawable.stroke;
 
 import main.java.Colors;
 import main.java.DrawingBoard;
+import main.java.Point;
 import main.java.drawable.Drawable;
 
 public abstract class Stroke implements Drawable {
@@ -31,6 +32,12 @@ public abstract class Stroke implements Drawable {
     public void setStroke(int stroke){
 
         this.stroke = stroke;
+
+    }
+
+    protected void drawAtPoint(DrawingBoard db, Point p){
+
+        drawAtPoint(db, p.getX(), p.getY());
 
     }
 
