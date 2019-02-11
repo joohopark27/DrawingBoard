@@ -116,8 +116,10 @@ public class Polygon extends Shape{
             }
         }
 
-        for(Line line: lines) {
-            line.drawOn(db);
+        if(strokeFilled) {
+            for (Line line : lines) {
+                line.drawOn(db);
+            }
         }
 
     }

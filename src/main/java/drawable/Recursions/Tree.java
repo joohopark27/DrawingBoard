@@ -1,6 +1,5 @@
 package main.java.drawable.Recursions;
 
-import com.sun.org.apache.xml.internal.dtm.ref.DTMAxisIteratorBase;
 import main.java.Drawing;
 import main.java.Point;
 import main.java.drawable.stroke.Line;

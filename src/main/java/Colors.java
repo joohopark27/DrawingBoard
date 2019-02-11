@@ -7,7 +7,7 @@ public enum Colors {
     GREEN (0x00FF00),
     BLACK (0x000000),
     YELLOW (0xFFFF00),
-    AQUA (0x00FFFF),
+    CYAN (0x00FFFF),
     NAVY (0x000080),
     PURPLE (0x800080),
     WHITE (0xFFFFFF),
