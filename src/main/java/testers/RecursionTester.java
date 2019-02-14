@@ -24,8 +24,7 @@ public class RecursionTester {
         rt.changeColor(Colors.CYAN);
         rt.fill(true);
 
-        SierpinskiCarpet carpet = new SierpinskiCarpet();
-        carpet.draw(rt, 5);
+        SierpinskiCarpet carpet = new SierpinskiCarpet(rt, 5);
 
         drawing.add(carpet);
 

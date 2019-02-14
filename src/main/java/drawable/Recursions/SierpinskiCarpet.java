@@ -6,6 +6,14 @@ import main.java.drawable.shape.Rectangle;
 
 public class SierpinskiCarpet extends Recursion<Rectangle> {
 
+    public SierpinskiCarpet(Rectangle initialShape, int repetition){
+
+        super(initialShape, repetition);
+
+        add(0, initialShape);
+
+    }
+
     @Override
     public void draw(Rectangle initialShape, int repetition) {
 
@@ -14,8 +22,6 @@ public class SierpinskiCarpet extends Recursion<Rectangle> {
             return;
 
         }
-
-        add(initialShape);
 
         Point topLeft = new Point(initialShape.getX1() + (initialShape.getX2() - initialShape.getX1()) / 3, initialShape.getY1() + (initialShape.getY2() - initialShape.getY1()) / 3);
         Point topRight = new Point(initialShape.getX1() + (initialShape.getX2() - initialShape.getX1()) * 2 / 3, initialShape.getY1() + (initialShape.getY2() - initialShape.getY1()) / 3);

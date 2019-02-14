@@ -9,11 +9,13 @@ public class Tree extends Recursion<Line>{
     private double ratio;
     private double minAngle, maxAngle;
 
-    public Tree(){
+    public Tree(Line initialShape, int repetition){
+
+        super(initialShape, repetition);
 
         ratio = 0.6;
-        minAngle = 5;
-        maxAngle = 70;
+        minAngle = 45;
+        maxAngle = 45;
 
     }
 

@@ -19,6 +19,12 @@ public class ShapeGroup implements Drawable {
         drawables.add(drawable);
     }
 
+    public void add(int pos, Drawable drawable){
+
+        drawables.add(pos, drawable);
+
+    }
+
     public void remove(){
 
         drawables.remove(drawables.size() - 1);
